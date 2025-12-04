@@ -1,0 +1,7 @@
+doctrine_migrations:
+  migrations_paths:
+    'DoctrineMigrations\Users': "%kernel.project_dir%/migrations/users"
+  storage:
+    table_storage:
+      table_name: "migration_versions_users"
+  em: users

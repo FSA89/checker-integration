@@ -1,0 +1,8 @@
+doctrine_migrations:
+  migrations_paths:
+    "DoctrineMigrations": "%kernel.project_dir%/migrations" # для default EM
+    'DoctrineMigrations\Users': "%kernel.project_dir%/migrations/users" # для users EM
+  storage:
+    table_storage:
+      table_name: "migration_versions" # для default EM
+  em: default

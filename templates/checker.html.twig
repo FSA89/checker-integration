@@ -1,0 +1,144 @@
+{% extends 'default/index.html.twig' %}
+
+{% block title %}Integrations checker{% endblock %}
+
+{% block head %}
+   <link href="/assets/styles/chart.css" rel="stylesheet"/>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+   <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+{% endblock %}
+
+ {% block body %}
+    <div class="content-page">
+        <div class="container">
+            <div id="preloader" class="preloader hidden">
+                <div class="preloader__spinner"></div>
+            </div>
+            <h1 class="tables-title">Integrations checker</h1>
+            <div class="tables-instructions">
+                <a href="https://outline.traffic-hunters.com/doc/cheker-vnedrenij-hhTfnmQM05" class="tables-link" rel="nofollow, noindex" target="_blank">Инструкция</a>
+            </div>
+            <div class="tables">
+                <form action="" class="tables-form" id="tables-form">
+                    <div class="tables-inner">
+                        <div class="tables-group">
+                            
+                            <select class="tables-select" id="name__select" size="1" name="name__op[]" required>
+                                <option value="" selected disabled>Выберите сайт</option>
+                            </select>
+                            
+                        </div>
+                        <div class="tables-group">
+                            <select class="tables-select" id="tags__select" size="1" name="name__op[]" required>
+                                <option value="" selected disabled>Выберите тег (необязательно)</option>
+                            </select> 
+                        </div>
+                        <div class="tables-group">
+                           
+                            <select class="tables-select" id="integration__select" size="1" name="integration__op[]" required>
+                                <option value="" selected disabled>Выберите интеграцию</option>
+                            </select>
+                        
+                        </div>
+                        
+                        <div class="tables-group">        
+                           
+                            <select class="tables-select" id="region__select" size="1" name="region__op[]" required>
+                                <option value="" selected disabled>Выберите регион</option>
+                            </select>
+                            
+                        </div>
+                        <div class="tables-group">
+                           
+                            <select class="tables-select" id="device__select" size="1" name="device__op[]" required>
+                                <option value="" selected disabled>Выберите устройство</option>
+                            </select>
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="tables-string">
+                        <button id="btn-choise" class="tables-btn">Показать данные</button>
+                    </div>
+                </form>
+            </div>
+            <div class="progress">
+                <div class="tables-text">Сколько старниц с внедрениями загружено в SpySERP</div>
+                <div class="progress-block">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="progress-num"><span>0</span>%</div>
+                </div>
+            </div>
+            <div class="tables-container">
+                
+                <div class="tables-chart">
+                    <div class="tables-chart__cont">
+                        <div id="tables-chart__1"></div>
+                    </div>
+                </div>
+                <div class="tables-chart">
+                    <div class="tables-chart__cont">
+                        <div id="tables-chart__2"></div>
+                    </div>
+                </div>
+                <div class="tables-chart">
+                    <div class="tables-chart__cont">
+                        <div id="tables-chart__3"></div>                
+                    </div>
+                </div>
+                <div class="tables-chart">
+                    <div class="tables-chart__cont">
+                        <div id="tables-chart__4"></div>
+                    </div>
+                </div>
+                <div class="tables-chart">
+                    <div class="tables-chart__cont">
+                        <div id="tables-chart__5"></div>
+                    </div>                
+                </div>                
+            </div>
+
+            <div class="tables-page">
+                <button id="btn-down" class="tables-btn">Загрузить страницы</button>
+                <div class="tables-page__container">
+                    <div class="tables-page__row">
+                        <div class="tables-page__group">
+                            <div class="tables-search">
+                                <input id="search" type="text" class="tables-search__input" placeholder="Поиск">
+                            </div>
+                            <button id="download" class="tables-page__download">Загрузить</button>
+                        </div>
+                        <div class="tables-page__records"></div>
+                    </div>
+                    <div class="tables-page__links">
+                        <div class="tables-page__name">
+                            <div class="tables-page__u">url</div>
+                            <div class="tables-page__u status">Статус</div>
+                        </div>
+                        
+                    </div>
+                    <div class="tables-page__pagination"></div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+  
+    
+  {% endblock %}
+  {% block footer_script %}
+        <script type="module" src="/assets/js/app.js"></script>
+    {% endblock %}
+
+
+

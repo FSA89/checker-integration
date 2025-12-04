@@ -1,0 +1,62 @@
+doctrine:
+  dbal:
+    connections:
+      default:
+        url: "%env(resolve:DATABASE_URL)%"
+      antusers:
+        url: "%env(resolve:DATABASE_URL_V2)%"
+      users_sqlite:
+        url: "%env(resolve:USERS_SQLITE_PATH)%" # путь к sqlite файлу
+    default_connection: default
+  orm:
+    entity_managers:
+      default:
+        connection: default
+        mappings:
+          Main:
+            is_bundle: false
+            dir: "%kernel.project_dir%/src/Entity"
+            prefix: 'App\Entity'
+            alias: Main
+      antusers:
+        connection: antusers
+        mappings:
+          antuser:
+            is_bundle: false
+            dir: "%kernel.project_dir%/src/AntUser"
+            prefix: 'App\AntUser'
+            alias: AntUsers
+      users:
+        connection: users_sqlite
+        mappings:
+          UserSqlite:
+            is_bundle: false
+            dir: "%kernel.project_dir%/src/User"
+            prefix: 'App\User'
+            alias: Users
+
+when@test:
+  doctrine:
+    dbal:
+      # "TEST_TOKEN" is typically set by ParaTest
+      dbname_suffix: "_test%env(default::TEST_TOKEN)%"
+
+when@prod:
+  doctrine:
+    orm:
+      auto_generate_proxy_classes: false
+      proxy_dir: "%kernel.build_dir%/doctrine/orm/Proxies"
+      query_cache_driver:
+        type: pool
+        pool: doctrine.system_cache_pool
+      result_cache_driver:
+        type: pool
+        pool: doctrine.result_cache_pool
+
+  framework:
+    cache:
+      pools:
+        doctrine.result_cache_pool:
+          adapter: cache.app
+        doctrine.system_cache_pool:
+          adapter: cache.system

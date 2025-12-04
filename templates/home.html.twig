@@ -1,0 +1,78 @@
+{% extends 'default/index.html.twig' %}
+{% import 'partials/_macros.twig' as macros %}
+
+{% block title %}Авторизация Checker{% endblock %}
+
+{% block head %}
+   <link href="/assets/styles/chart.css" rel="stylesheet"/>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+{% endblock %}
+
+{% block body %}
+    <div class="content-page">
+        <div class="container">
+            <div id="preloader" class="preloader hidden">
+                <div class="preloader__spinner"></div>
+            </div>
+            <h1 class="tables-title">Auth checker</h1>
+            
+            <div class="google-inner">
+                {% if app.user %}
+                    {# <div>Вы вошли как: <strong>{{ app.user.email }}</strong></div>
+                    <div>Роли пользователя: <strong>{{ app.user.roles|map(role => macros.role_label(role))|join(', ') }}</strong></div>
+                    <a href="{{ path('app_logout') }}">Выйти</a> #}
+
+                     <div class="all_panel">
+                       <div class="all_panel-inner">
+                            <a href="https://checker.ant-team.ru/preview" class="all_panel-item" target="_blank">
+                                <img src="/assets/img/icons/panel.png" alt="panel" class="all_panel-img">
+                                <span>Чекер внедрений</span>
+                            </a>
+                            <a href="https://test.ant-team.ru/serv" class="all_panel-item" target="_blank">
+                                <img src="/assets/img/icons/panel.png" alt="panel" class="all_panel-img">
+                                <span>Панель редиректов Гемблы</span>
+                            </a>
+                            <a href="https://lookerstudio.google.com/u/0/reporting/bd224415-1521-469b-9c87-38bbe878c2a3/page/p_14e60j4kld" class="all_panel-item" target="_blank">
+                                <img src="/assets/img/icons/panel.png" alt="panel" class="all_panel-img">
+                                <span>Балансы проектов Ant-Team v2</span>
+                            </a>
+                           <a href="https://lookerstudio.google.com/u/0/reporting/7286ee3f-90f9-4351-829a-e7f4159e353e/page/p_td7feoge4c" class="all_panel-item" target="_blank">
+                                <img src="/assets/img/icons/panel.png" alt="panel" class="all_panel-img">
+                                <span>Еженедельный отчёт</span>
+                            </a>
+                            <a href="https://lookerstudio.google.com/u/0/reporting/eeec68f5-e4ec-46f0-bd38-9c38fce87c05/page/p_zrf9avtb5c" class="all_panel-item" target="_blank">
+                                <img src="/assets/img/icons/panel.png" alt="panel" class="all_panel-img">
+                                <span>Ежемесячный отчёт</span>
+                            </a>
+                            <a href="https://lookerstudio.google.com/u/0/reporting/c4cc2b34-ca53-446d-86e3-6932866c462e/page/p_bootvbuh7c" class="all_panel-item" target="_blank">
+                                <img src="/assets/img/icons/panel.png" alt="panel" class="all_panel-img">
+                                <span>Мониторинг здоровья</span>
+                            </a>
+                            <a href="https://link-indexer.com/login" class="all_panel-item" target="_blank">
+                                <img src="/assets/img/icons/panel.png" alt="panel" class="all_panel-img">
+                                <span>Какая то панель на ларе</span>
+                            </a>
+                        </div> 
+                    </div>
+                {% else %}
+                    <a href="{{ path('connect_google_start') }}">
+                        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" style="width:20px; vertical-align: middle; margin-right: 8px;">
+                        Войти через Google
+                    </a>
+
+                    {% for message in app.flashes('error') %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block footer_script %}
+  
+{% endblock %}

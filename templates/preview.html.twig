@@ -1,0 +1,96 @@
+{% extends 'default/index.html.twig' %}
+
+{% block title %}Integrations checker preview{% endblock %}
+
+{% block head %}
+   <link href="/assets/styles/chart.css" rel="stylesheet"/>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- Подключаем скрипт echarts -->
+   <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+
+    <!-- Подключаем скрипт обработки документов -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- Подключаем скрипт flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/ru.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="content-page">
+        <div class="container">
+            <div id="preloader" class="preloader hidden">
+                <div class="preloader__spinner"></div>
+            </div>
+            <h1 class="tables-title">Integrations checker preview</h1>
+            <div class="tables-instructions">
+                <a href="https://outline.traffic-hunters.com/doc/cheker-vnedrenij-hhTfnmQM05" class="tables-link" rel="nofollow, noindex" target="_blank">Инструкция</a>
+            </div>
+
+            <div class="tables tables-preview">
+                <div class="dropdown-inner">
+                    <div class="dropdown-container">
+                        <div class="dropdown" id="dropdown1">
+                            <button class="dropdown-button" id="button1" data-responsible="">Ответственный</button>
+                            <div class="dropdown-menu" id="menu1">
+                                <input type="text" id="searchInput1" placeholder="Поиск..." class="dropdown-search">
+                                <ul id="list1" class="dropdown-list">
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="dropdown-text">или</div>
+                        <div class="dropdown" id="dropdown2">
+                            <button class="dropdown-button" id="button2" data-team="">Команда</button>
+                            <div class="dropdown-menu" id="menu2">
+                                <input type="text" id="searchInput2" placeholder="Поиск..." class="dropdown-search">
+                                <ul id="list2" class="dropdown-list">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="date-range-container">
+                        <div class="date-range-inner">
+                            <div class="date-range-item">
+                                <div class="date-range-label">Начальная дата</div>
+                                <input type="text" id="startDate" class="date-input" placeholder="Выберите начальную дату" readonly />                    
+                            </div>
+                            <div class="date-range-item">
+                                <div class="date-range-label">Конечная дата</div>
+                                <input type="text" id="endDate" class="date-input" placeholder="Выберите конечную дату" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tag">
+                        <div class="tag-container">
+                            <input type="text" id="tag" class="tag-input" placeholder="Введите тег" />
+                             <span id="clear-btn" class="clear-btn" style="display: none;">&#10005;</span>
+                             <ul id="tag-suggestions" class="tag-dropdown"></ul>
+                        </div>
+                    </div>
+                    <div class="reset-container">
+                        <button id="resetButton" class="reset-button">Сбросить фильтры</button>
+                    </div>
+                </div>
+                
+               
+                <div id="graphContainer"></div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block footer_script %}
+    <script type="module" src="/assets/js/preview.js"></script>
+{% endblock %}
