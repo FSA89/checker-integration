@@ -3,6 +3,12 @@
 /.env.local.php
 /.env.*.local
 /.env
+.env
+.env.local
+.env.dev
+.env.test
+.env.prod
+.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
@@ -25,3 +31,52 @@
 ###< symfony/asset-mapper ###
 
 /.cache
+
+
+/node_modules/
+/public/bundles/
+/public/build/
+/public/uploads/
+/public/media/
+
+### cache/logs ###
+/var/cache/
+/var/log/
+
+### Composer ###
+/composer.lock
+/symfony.lock
+
+### Docker ###
+/docker-data/
+/docker/*/data/
+/docker/*/logs/
+/docker-compose.override.yml
+
+### SQLite databases ###
+*.sqlite
+
+### Logs ###
+*.log
+*.log.*
+/checker.ant-team.ru.access.log*
+/checker.ant-team.ru.error.log*
+
+### IDE ###
+/.idea/
+/.vscode/
+/*.iml
+
+### System ###
+.DS_Store
+Thumbs.db
+
+### Histories ###
+.bash_history
+.mysql_history
+
+### Misc ###
+/checker.ant-team.ru.access.log
+/checker.ant-team.ru.access.log.*
+/checker.ant-team.ru.error.log
+/checker.ant-team.ru.error.log.*
